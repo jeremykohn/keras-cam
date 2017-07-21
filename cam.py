@@ -24,7 +24,7 @@ def visualize_class_activation_map(model_path, img_path, output_path):
         
         #Get the 512 input weights to the softmax.
         class_weights = model.layers[-1].get_weights()[0]
-        final_conv_layer = get_output_layer(model, "conv5_3")
+        final_conv_layer = get_output_layer(model, "block5_conv3")
         get_output = K.function([model.layers[0].input], [final_conv_layer.output, model.layers[-1].output])
         [conv_outputs, predictions] = get_output([img])
         conv_outputs = conv_outputs[0, :, :, :]
